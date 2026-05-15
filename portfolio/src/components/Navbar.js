@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 
 export default function Navbar() {
   const [openChat, setOpenChat] = useState(false);
