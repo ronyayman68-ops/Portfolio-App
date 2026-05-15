@@ -18,17 +18,15 @@ export default function About({ darkMode }) {
           <div
             className={
               darkMode
-                ? "relative w-[320px] h-[380px] rounded-[40px] backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl flex items-center justify-center"
-                : "relative w-[320px] h-[380px] rounded-[40px] backdrop-blur-xl bg-white/30 border border-white/40 shadow-2xl flex items-center justify-center"
+                ? "relative w-[320px] h-[380px] rounded-[40px] overflow-hidden backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl"
+                : "relative w-[320px] h-[380px] rounded-[40px] overflow-hidden backdrop-blur-xl bg-white/30 border border-white/40 shadow-2xl"
             }
           >
-            <span
-              className={
-                darkMode ? "text-white text-6xl" : "text-[#2d2d2d] text-6xl"
-              }
-            >
-              RA
-            </span>
+            <img
+              src="/vr.png"
+              alt="VR 3D Gaming Design"
+              className="w-full h-full object-cover"
+            />
           </div>
         </motion.div>
 
@@ -107,16 +105,6 @@ export default function About({ darkMode }) {
               <p className="text-sm text-gray-400">Technologies</p>
             </div>
           </div>
-
-          <button
-            className={
-              darkMode
-                ? "px-8 py-3 rounded-full bg-white text-black font-medium hover:bg-gray-200 transition"
-                : "px-8 py-3 rounded-full bg-[#2d2d2d] text-white font-medium hover:bg-[#444] transition"
-            }
-          >
-            Download CV
-          </button>
         </motion.div>
       </div>
     </section>

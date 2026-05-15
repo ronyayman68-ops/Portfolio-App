@@ -9,13 +9,13 @@ export default function Projects({ darkMode }) {
       tech: ["Unity", "VR", "Blender"],
     },
     {
-      title: "Portfolio Website",
-      description: "Modern animated React portfolio.",
-      tech: ["React", "Tailwind", "Framer Motion"],
+      title: "Gaming",
+      description: "An interactive gaming experience built with modern tools.",
+      tech: ["Unity", "VR", "Blender", "C#"],
     },
     {
-      title: "3D Environment",
-      description: "Interactive 3D world design.",
+      title: "VR kido",
+      description: "Interactive world design.",
       tech: ["Blender", "Twinmotion"],
     },
   ];

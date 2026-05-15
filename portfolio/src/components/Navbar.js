@@ -1,4 +1,12 @@
+import { useState } from "react";
+
 export default function Navbar({ darkMode, setDarkMode }) {
+  const [openChat, setOpenChat] = useState(false);
+  const [messages, setMessages] = useState([
+    { type: "bot", text: "Hi 👋 How can I help you?" },
+  ]);
+  const [input, setInput] = useState("");
+
   const navItems = [
     { name: "Home", id: "home" },
     { name: "About", id: "about" },
@@ -8,107 +16,132 @@ export default function Navbar({ darkMode, setDarkMode }) {
   ];
 
   const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: "smooth",
-    });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const sendMessage = () => {
+    if (!input.trim()) return;
+
+    const newMessages = [
+      ...messages,
+      { type: "user", text: input },
+      { type: "bot", text: "Thanks! I’ll get back to you soon 🚀" },
+    ];
+
+    setMessages(newMessages);
+    setInput("");
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 flex justify-center px-4 py-6">
-      <nav
-        className={
-          darkMode
-            ? "w-full max-w-7xl backdrop-blur-xl bg-white/5 border border-white/10 rounded-[32px] shadow-2xl shadow-black/30 px-8 py-4 flex items-center justify-between transition-all duration-500"
-            : "w-full max-w-7xl backdrop-blur-xl bg-white/25 border border-white/40 rounded-[32px] shadow-2xl shadow-pink-200/20 px-8 py-4 flex items-center justify-between transition-all duration-500"
-        }
-      >
-        {/* LOGO */}
-        <div className="flex items-center gap-3 cursor-pointer group">
-          <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-[#fbc2eb] via-[#d8b4fe] to-[#a6c1ee] flex items-center justify-center font-bold text-[#2d2d2d] shadow-lg transition duration-300 group-hover:scale-110">
-            R
-          </div>
-
-          <h1
-            className={
-              darkMode
-                ? "text-2xl tracking-wide text-white italic font-['Playfair_Display']"
-                : "text-2xl tracking-wide text-[#2d2d2d] italic font-['Playfair_Display']"
-            }
-          >
-            Raghad
-          </h1>
-        </div>
-
-        {/* NAV LINKS */}
-        <ul
+    <>
+      {/* NAVBAR */}
+      <header className="fixed top-0 left-0 w-full z-50 flex justify-center px-4 py-6">
+        <nav
           className={
             darkMode
-              ? "hidden md:flex items-center gap-10 text-gray-300"
-              : "hidden md:flex items-center gap-10 text-[#5a5a5a]"
+              ? "w-full max-w-7xl backdrop-blur-xl bg-white/5 border border-white/10 rounded-[32px] shadow-2xl shadow-black/30 px-8 py-4 flex items-center justify-between"
+              : "w-full max-w-7xl backdrop-blur-xl bg-white/25 border border-white/40 rounded-[32px] shadow-2xl shadow-pink-200/20 px-8 py-4 flex items-center justify-between"
           }
         >
-          {navItems.map((item, index) => (
-            <li
-              key={index}
-              onClick={() => scrollToSection(item.id)}
+          {/* LOGO */}
+          <div className="flex items-center gap-3">
+            <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-[#fbc2eb] via-[#d8b4fe] to-[#a6c1ee] flex items-center justify-center font-bold">
+              R
+            </div>
+            <h1
               className={
-                darkMode
-                  ? "relative cursor-pointer uppercase tracking-[0.25em] text-[12px] hover:text-white transition-all duration-300 group"
-                  : "relative cursor-pointer uppercase tracking-[0.25em] text-[12px] hover:text-[#2d2d2d] transition-all duration-300 group"
+                darkMode ? "text-white italic" : "text-[#2d2d2d] italic"
               }
             >
-              {item.name}
+              Raghad
+            </h1>
+          </div>
 
-              <span className="absolute left-0 -bottom-1 w-0 h-[1.5px] bg-gradient-to-r from-pink-300 to-violet-300 transition-all duration-300 group-hover:w-full"></span>
-            </li>
-          ))}
-        </ul>
+          {/* LINKS */}
+          <ul className="hidden md:flex gap-10">
+            {navItems.map((item, i) => (
+              <li
+                key={i}
+                onClick={() => scrollToSection(item.id)}
+                className="cursor-pointer uppercase text-xs tracking-widest"
+              >
+                {item.name}
+              </li>
+            ))}
+          </ul>
 
-        {/* RIGHT SIDE */}
-        <div className="flex items-center gap-5">
-          {/* DARK MODE TOGGLE */}
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className={
-              darkMode
-                ? "hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/10 border border-white/10 text-white hover:bg-white/20 transition duration-300"
-                : "hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/40 border border-white/60 text-[#5a5a5a] hover:bg-white/70 transition duration-300"
-            }
-          >
-            {darkMode ? "☾" : "☀"}
-          </button>
+          {/* RIGHT */}
+          <div className="flex items-center gap-4">
+            <button onClick={() => setDarkMode(!darkMode)}>
+              {darkMode ? "☾" : "☀"}
+            </button>
 
-          {/* CTA BUTTON */}
-          <button
-            onClick={() => scrollToSection("contact")}
-            className={
-              darkMode
-                ? "hidden md:block px-7 py-3 rounded-full bg-white text-black uppercase tracking-[0.2em] text-[11px] font-semibold hover:bg-gray-200 transition duration-300 shadow-xl shadow-black/20"
-                : "hidden md:block px-7 py-3 rounded-full bg-[#2d2d2d] text-white uppercase tracking-[0.2em] text-[11px] font-semibold hover:bg-[#444] transition duration-300 shadow-xl shadow-black/10"
-            }
-          >
-            Let's Talk
-          </button>
-
-          {/* MOBILE MENU */}
-          <button className="md:hidden flex flex-col gap-1.5">
-            <span
+            <button
+              onClick={() => setOpenChat(true)}
               className={
                 darkMode
-                  ? "w-6 h-[1.5px] bg-white rounded-full"
-                  : "w-6 h-[1.5px] bg-[#2d2d2d] rounded-full"
+                  ? "hidden md:block px-7 py-3 rounded-full bg-white text-black uppercase tracking-[0.2em] text-[11px] font-semibold hover:bg-gray-200 transition duration-300 shadow-xl shadow-black/20"
+                  : "hidden md:block px-7 py-3 rounded-full bg-[#2d2d2d] text-white uppercase tracking-[0.2em] text-[11px] font-semibold hover:bg-[#444] transition duration-300 shadow-xl shadow-black/10"
               }
-            ></span>
-            <span
-              className={
-                darkMode
-                  ? "w-6 h-[1.5px] bg-white rounded-full"
-                  : "w-6 h-[1.5px] bg-[#2d2d2d] rounded-full"
-              }
-            ></span>
-          </button>
+            >
+              Let's Talk
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      {/* CHAT MODAL */}
+      {openChat && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[999]">
+          <div
+            className={
+              darkMode
+                ? "w-[340px] h-[450px] bg-[#111] border border-white/10 rounded-2xl flex flex-col"
+                : "w-[340px] h-[450px] bg-white border border-black/10 rounded-2xl flex flex-col"
+            }
+          >
+            {/* HEADER */}
+            <div className="p-4 border-b flex justify-between items-center">
+              <h2 className="font-semibold">Chat with me</h2>
+              <button onClick={() => setOpenChat(false)}>✕</button>
+            </div>
+
+            {/* MESSAGES */}
+            <div className="flex-1 p-4 overflow-y-auto space-y-2">
+              {messages.map((msg, i) => (
+                <div
+                  key={i}
+                  className={
+                    msg.type === "user"
+                      ? "ml-auto bg-pink-400 text-white px-3 py-2 rounded-[18px] max-w-[80%]"
+                      : darkMode
+                        ? "bg-white/10 text-white px-3 py-2 rounded-[18px] max-w-[80%]"
+                        : "bg-gray-200 text-black px-3 py-2 rounded-[18px] max-w-[80%]"
+                  }
+                >
+                  {msg.text}
+                </div>
+              ))}
+            </div>
+
+            {/* INPUT */}
+            <div className="p-3 border-t flex gap-2">
+              <input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Type message..."
+                className="flex-1 p-2 rounded-[12px] border outline-none"
+              />
+              <button
+                onClick={sendMessage}
+                className="px-4 py-2 bg-pink-400 text-white rounded-[12px]"
+              >
+                Send
+              </button>
+            </div>
+          </div>
         </div>
-      </nav>
-    </header>
+      )}
+    </>
   );
 }

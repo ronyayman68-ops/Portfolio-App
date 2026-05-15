@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
+
 export default function Hero({ darkMode }) {
   return (
     <section
       id="home"
       className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden"
     >
+      {/* Background blobs */}
       <motion.div
         animate={{ y: [0, -25, 0] }}
         transition={{ duration: 7, repeat: Infinity }}
@@ -13,7 +15,7 @@ export default function Hero({ darkMode }) {
             ? "absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-pink-500/20 rounded-full blur-[120px]"
             : "absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-pink-200/40 rounded-full blur-[120px]"
         }
-      ></motion.div>
+      />
 
       <motion.div
         animate={{ y: [0, 25, 0] }}
@@ -23,7 +25,7 @@ export default function Hero({ darkMode }) {
             ? "absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-violet-500/20 rounded-full blur-[120px]"
             : "absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cyan-100/40 rounded-full blur-[120px]"
         }
-      ></motion.div>
+      />
 
       {/* Main Content */}
       <div className="max-w-7xl w-full z-10 flex flex-col items-center text-center">
@@ -38,7 +40,6 @@ export default function Hero({ darkMode }) {
               : "backdrop-blur-xl bg-white/30 border border-white/40 p-12 md:p-20 rounded-[60px] shadow-2xl shadow-pink-200/30 transition-all duration-500"
           }
         >
-          {/* Name */}
           <h1
             className={
               darkMode
@@ -49,7 +50,6 @@ export default function Hero({ darkMode }) {
             Raghad Ayman
           </h1>
 
-          {/* Titles */}
           <div className="space-y-3">
             <p
               className={
@@ -72,6 +72,20 @@ export default function Hero({ darkMode }) {
             </p>
           </div>
         </motion.div>
+
+        {/* Download CV (NOW BELOW CARD) */}
+        <a
+          href="/Raghad Ayman _CV.pdf"
+          target="_blank"
+          rel="noreferrer"
+          className={
+            darkMode
+              ? "mt-8 inline-block px-8 py-3 rounded-full bg-white text-black font-medium hover:bg-gray-200 transition"
+              : "mt-8 inline-block px-8 py-3 rounded-full bg-[#2d2d2d] text-white font-medium hover:bg-[#444] transition"
+          }
+        >
+          View CV
+        </a>
       </div>
     </section>
   );
