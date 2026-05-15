@@ -43,14 +43,14 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        <a
+        {/* <a
           href={process.env.PUBLIC_URL + "/cv.pdf"}
           target="_blank"
           rel="noreferrer"
           className="mt-8 inline-block px-8 py-3 rounded-full bg-white text-black font-medium hover:bg-gray-200 transition"
         >
           View CV
-        </a>
+        </a> */}
       </div>
     </section>
   );
