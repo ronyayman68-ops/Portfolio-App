@@ -23,7 +23,7 @@ export default function About({ darkMode }) {
             }
           >
             <img
-              src="/VR.png"
+              src={process.env.PUBLIC_URL + "/VR.png"}
               alt="Raghad Ayman"
               className="w-full h-full object-cover"
             />
