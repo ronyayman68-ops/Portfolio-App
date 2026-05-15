@@ -21,7 +21,6 @@ export default function Hero() {
 
       {/* Main Content */}
       <div className="max-w-7xl w-full z-10 flex flex-col items-center text-center">
-
         {/* Glass Card */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -44,9 +43,8 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* CV BUTTON */}
         <a
-          href="/Raghad Ayman _CV.pdf"
+          href={process.env.PUBLIC_URL + "/cv.pdf"}
           target="_blank"
           rel="noreferrer"
           className="mt-8 inline-block px-8 py-3 rounded-full bg-white text-black font-medium hover:bg-gray-200 transition"
