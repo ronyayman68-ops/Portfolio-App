@@ -53,8 +53,7 @@ export default function Footer() {
 
         {/* Right */}
         <p className="text-gray-500 text-xs">
-          Built with React & Framer Motion
-          Made by Rawan Ayman
+          Built with React Made by Rawan Ayman
         </p>
 
       </div>

@@ -2,32 +2,48 @@ import { motion } from "framer-motion";
 
 export default function Skills({ darkMode }) {
   const skills = [
-    { name: "React", level: 90, category: "Frontend" },
-    { name: "JavaScript", level: 85, category: "Frontend" },
-    { name: "HTML / CSS", level: 95, category: "Frontend" },
-    { name: "Tailwind CSS", level: 90, category: "Frontend" },
-
-    { name: "Node.js", level: 80, category: "Backend" },
-    { name: "Express", level: 75, category: "Backend" },
-    { name: "APIs", level: 80, category: "Backend" },
-
-    { name: "Figma", level: 95, category: "Design" },
-    { name: "Adobe Suite", level: 85, category: "Design" },
-    { name: "Blender", level: 80, category: "Design" },
-
-    { name: "Git / GitHub", level: 90, category: "Tools" },
-    { name: "Flutter", level: 70, category: "Tools" },
-    { name: "Unity / VR", level: 85, category: "Tools" },
+    {
+      category: "VR Development",
+      items: [
+        { name: "Unity (VR Experiences)", level: 85 },
+        { name: "Immersive Interaction Design", level: 80 },
+        { name: "VR Scene Building", level: 80 },
+      ],
+    },
+    {
+      category: "Gaming",
+      items: [
+        { name: "2D Game Development", level: 85 },
+        { name: "Game Design Concepts", level: 80 },
+        { name: "Interactive Mechanics", level: 80 },
+      ],
+    },
+    {
+      category: "3D Design",
+      items: [
+        { name: "Blender Modeling", level: 90 },
+        { name: "3D Environment Design", level: 85 },
+        { name: "Character Modeling", level: 80 },
+      ],
+    },
+    {
+      category: "Interior Design",
+      items: [
+        { name: "Space Planning", level: 85 },
+        { name: "3D Interior Visualization", level: 85 },
+        { name: "Lighting & Materials", level: 80 },
+      ],
+    },
   ];
-
-  const categories = ["Frontend", "Backend", "Design", "Tools"];
 
   return (
     <section id="skills" className="relative py-32 px-6 overflow-hidden">
+      {/* Background glow */}
       <div className="absolute w-[500px] h-[500px] bg-pink-300/20 blur-[140px] rounded-full top-10 left-10"></div>
       <div className="absolute w-[500px] h-[500px] bg-violet-300/20 blur-[140px] rounded-full bottom-10 right-10"></div>
 
       <div className="max-w-7xl mx-auto z-10 relative">
+        {/* Title */}
         <div className="text-center mb-20">
           <p className="uppercase tracking-[0.3em] text-sm text-pink-400 mb-3">
             My Skills
@@ -40,12 +56,13 @@ export default function Skills({ darkMode }) {
                 : "text-4xl md:text-5xl font-['Playfair_Display'] text-[#2d2d2d]"
             }
           >
-            Technologies I Work With
+            Focused
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {categories.map((cat, i) => (
+        {/* Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+          {skills.map((group, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
@@ -57,34 +74,42 @@ export default function Skills({ darkMode }) {
                   : "backdrop-blur-xl bg-white/30 border border-white/40 rounded-3xl p-6"
               }
             >
+              {/* Category */}
               <h3 className="text-pink-400 uppercase tracking-[0.2em] text-xs mb-6">
-                {cat}
+                {group.category}
               </h3>
 
+              {/* Skills */}
               <div className="space-y-5">
-                {skills
-                  .filter((skill) => skill.category === cat)
-                  .map((skill, index) => (
-                    <div key={index}>
-                      <div className="flex justify-between mb-1">
-                        <span className={darkMode ? "text-white text-sm" : "text-[#2d2d2d] text-sm"}>
-                          {skill.name}
-                        </span>
-                        <span className="text-pink-400 text-xs">
-                          {skill.level}%
-                        </span>
-                      </div>
+                {group.items.map((skill, index) => (
+                  <div key={index}>
+                    <div className="flex justify-between mb-1">
+                      <span
+                        className={
+                          darkMode
+                            ? "text-white text-sm"
+                            : "text-[#2d2d2d] text-sm"
+                        }
+                      >
+                        {skill.name}
+                      </span>
 
-                      <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          transition={{ duration: 1 }}
-                          className="h-full bg-gradient-to-r from-pink-400 to-violet-400 rounded-full"
-                        />
-                      </div>
+                      <span className="text-pink-400 text-xs">
+                        {skill.level}%
+                      </span>
                     </div>
-                  ))}
+
+                    {/* Progress bar */}
+                    <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${skill.level}%` }}
+                        transition={{ duration: 1 }}
+                        className="h-full bg-gradient-to-r from-pink-400 to-violet-400 rounded-full"
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
             </motion.div>
           ))}
