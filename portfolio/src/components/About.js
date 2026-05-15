@@ -23,8 +23,8 @@ export default function About({ darkMode }) {
             }
           >
             <img
-              src="/vr.png"
-              alt="VR 3D Gaming Design"
+              src="/VR.png"
+              alt="Raghad Ayman"
               className="w-full h-full object-cover"
             />
           </div>
