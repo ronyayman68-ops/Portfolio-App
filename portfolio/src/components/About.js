@@ -55,7 +55,7 @@ export default function About() {
             </div>
 
             <div className="backdrop-blur-xl bg-white/10 border border-white/10 rounded-2xl p-4 text-center">
-              <h3 className="text-white text-2xl font-bold">20+</h3>
+              <h3 className="text-white text-2xl font-bold">10+</h3>
               <p className="text-sm text-gray-400">Projects</p>
             </div>
 

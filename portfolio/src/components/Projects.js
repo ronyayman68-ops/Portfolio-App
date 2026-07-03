@@ -5,25 +5,30 @@ export default function Projects({ darkMode }) {
   const projects = [
     {
       title: "VR Super Morning",
-      description: "Immersive VR experience built with Unity.",
+      description:
+        "Built an interactive VR tour environment for children, seamlessly combining audio-visual assets with real-time navigation.",
       tech: ["Unity", "VR", "Blender"],
+      image: "/Supermor.png",
     },
     {
       title: "Gaming",
-      description: "An interactive gaming experience built with modern tools.",
-      tech: ["Unity", "VR", "Blender", "C#"],
+      description:
+        "Developed a 3D Unity runner game featuring dynamic obstacle avoidance and a custom-textured NavMesh AI companion.",
+      tech: ["Unity", "3D", "Blender"],
+      image: "/Game.png",
     },
     {
       title: "VR kido",
-      description: "Interactive world design.",
-      tech: ["Blender", "Twinmotion"],
+      description:
+        "Developed an immersive virtual reality game application for adhd children,featuring interactive 3d Puzzles and spot the-diffrence challenges .",
+      tech: ["Unity", "Blender", "VR"],
+      image: "/VRKido.png",
     },
   ];
 
   return (
     <section id="projects" className="relative py-32 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
-
         {/* Header */}
         <motion.div
           variants={fadeUp}
@@ -57,31 +62,43 @@ export default function Projects({ darkMode }) {
               transition={{ delay: i * 0.1 }}
               className={
                 darkMode
-                  ? "p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl"
-                  : "p-6 rounded-3xl bg-white/30 border border-white/40 backdrop-blur-xl"
+                  ? "rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl overflow-hidden flex flex-col"
+                  : "rounded-3xl bg-white/30 border border-white/40 backdrop-blur-xl overflow-hidden flex flex-col"
               }
             >
-              <h3 className="text-xl font-bold mb-2 text-pink-400">
-                {project.title}
-              </h3>
+              <div className="w-full h-48 overflow-hidden relative bg-black/10">
+                <img
+                  src={process.env.PUBLIC_URL + project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                />
+              </div>
 
-              <p
-                className={
-                  darkMode ? "text-gray-300 mb-4" : "text-gray-700 mb-4"
-                }
-              >
-                {project.description}
-              </p>
+              <div className="p-6 flex flex-col flex-grow">
+                <h3 className="text-xl font-bold mb-2 text-pink-400">
+                  {project.title}
+                </h3>
 
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map((t, idx) => (
-                  <span
-                    key={idx}
-                    className="text-xs px-3 py-1 rounded-full bg-pink-400/20 text-pink-300"
-                  >
-                    {t}
-                  </span>
-                ))}
+                <p
+                  className={
+                    darkMode
+                      ? "text-gray-300 mb-4 flex-grow"
+                      : "text-gray-700 mb-4 flex-grow"
+                  }
+                >
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {project.tech.map((t, idx) => (
+                    <span
+                      key={idx}
+                      className="text-xs px-3 py-1 rounded-full bg-pink-400/20 text-pink-300"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}

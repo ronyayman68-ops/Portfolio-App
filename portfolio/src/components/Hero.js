@@ -1,6 +1,14 @@
 import { motion } from "framer-motion";
 
 export default function Hero() {
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = process.env.PUBLIC_URL + "/cv1.pdf";
+    link.download = "cv1.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   return (
     <section
       id="home"
@@ -35,7 +43,6 @@ export default function Hero() {
 
       {/* Main Content */}
       <div className="max-w-7xl w-full z-10 flex flex-col items-center text-center">
-        
         {/* Glass Card */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -66,7 +73,7 @@ export default function Hero() {
           </h1>
 
           {/* Titles */}
-          <div className="space-y-3">
+          <div className="space-y-3 mb-10">
             <p
               className="
                 text-lg md:text-2xl
@@ -76,7 +83,7 @@ export default function Hero() {
                 uppercase
               "
             >
-              UI/UX Designer
+              VR and Game Developer
             </p>
 
             <p
@@ -91,6 +98,27 @@ export default function Hero() {
               3D AND VR Designer
             </p>
           </div>
+
+          {/* Interactive Download Button */}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handleDownload}
+            className="
+              px-8 py-3 
+              text-sm md:text-base
+              font-medium tracking-wider text-white uppercase
+              bg-gradient-to-r from-pink-500/20 to-violet-500/20
+              hover:from-pink-500/40 hover:to-violet-500/40
+              border border-white/10 hover:border-white/30
+              rounded-full
+              shadow-lg
+              transition-all duration-300
+              cursor-pointer
+            "
+          >
+            Download CV
+          </motion.button>
         </motion.div>
       </div>
     </section>

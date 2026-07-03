@@ -26,14 +26,13 @@ export default function Contact({ darkMode }) {
           <h2
             className={
               darkMode
-                ? "text-4xl md:text-5xl text-white font-['Playfair_Display']"
+                ? "text-4xl md:text-5xl text-zinc-100 font-['Playfair_Display']"
                 : "text-4xl md:text-5xl text-[#2d2d2d] font-['Playfair_Display']"
             }
           >
             Let’s Work Together
           </h2>
 
-          {/* ✅ UPDATED ANIMATED LINE */}
           <p className={darkMode ? "text-gray-300 mt-4" : "text-gray-600 mt-4"}>
             Got a project or idea? Send me a message{" "}
             <motion.span
